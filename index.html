@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Group Task App</title>
+  <link rel="stylesheet" href="./css/styles.css"/>
+</head>
+<body>
+  <header>
+    <h1>Group Task Manager</h1>
+    <!-- <nav>
+      <a href="#/login">Connexion</a>
+      <a href="#/register">Inscription</a>
+      <a href="#/groups">Groupes</a>
+      <a href="#/tasks">Tâches</a>
+      <span id="user-info" style="margin-left:1rem; color:#fff;"></span>
+      <button id="logout-btn" style="display:none;">Déconnexion</button>
+    </nav> -->
+
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="#/groups">Group Task Manager</a>
+      </div>
+      <div class="nav-right">
+
+        <a href="#/groups">Groupes</a>
+        <a href="#/tasks">Tâches</a>
+        <span id="user-info"></span>
+        <button id="logout-btn">Déconnexion</button>
+
+        <a href="#/login">Connexion</a>
+        <a href="#/register">Inscription</a>
+
+      </div>
+    </nav>
+
+  </header>
+
+  <main id="app"></main>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
