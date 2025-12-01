@@ -79,7 +79,7 @@ export async function renderTasks(container) {
       titre: f.titre.value || null,
       description: f.description.value || null,
       status: f.status.value === "true",
-      deadline: f.deadline.value ? new Date(f.deadline.value).toISOString() : null,
+      deadline: f.deadline.value ? new Date(f.deadline.value).toISOString().replace('Z', '') : null,
     };
     try {
       await api("/tasks", "PUT", payload);
