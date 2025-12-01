@@ -15,9 +15,13 @@ function showLoader() {
   if (loader) loader.style.display = "flex";
 }
 
-function hideLoader() {
+function hideLoaderDelayed() {
   const loader = document.getElementById("loader");
-  if (loader) loader.style.display = "none";
+  if (loader) {
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 3000); // ✅ attendre 3 secondes
+  }
 }
 
 export async function api(path, method = "GET", body = null, auth = true) {
@@ -41,11 +45,14 @@ export async function api(path, method = "GET", body = null, auth = true) {
     }
     return res.json().catch(() => ({}));
   } finally {
-
-    showLoader(); // ✅ afficher loader avant la requête
-    
-    setTimeout(() => {
-      hideLoader(); // ✅ cacher loader après la requête (succès ou erreur)
-    }, 3000);
+    // ⚠️ ne pas cacher directement → attendre une redirection
+    const oldHash = location.hash;
+    const observer = new MutationObserver(() => {
+      if (location.hash !== oldHash) {
+        hideLoaderDelayed(); // ✅ cacher après 3 secondes
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 }
