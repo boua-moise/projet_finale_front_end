@@ -45,16 +45,6 @@ export async function api(path, method = "GET", body = null, auth = true) {
     }
     return res.json().catch(() => ({}));
   } finally {
-    // ne pas cacher directement → attendre une redirection
-    const oldHash = location.hash;
-    const observer = new MutationObserver(() => {
-      if (location.hash !== oldHash) {
-        hideLoaderDelayed(); // ✅ cacher après 3 secondes
-        observer.disconnect();
-      }else{
-        hideLoaderDelayed();
-      }
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
+    hideLoaderDelayed(); // ✅ cacher loader après 3 secondes, même sans redirection
   }
 }
