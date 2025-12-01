@@ -41,6 +41,8 @@ export async function api(path, method = "GET", body = null, auth = true) {
     }
     return res.json().catch(() => ({}));
   } finally {
-    hideLoader(); // ✅ cacher loader après la requête (succès ou erreur)
+    setTimeout(() => {
+      hideLoader(); // ✅ cacher loader après la requête (succès ou erreur)
+    }, 2000);
   }
 }
