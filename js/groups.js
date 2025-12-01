@@ -181,8 +181,8 @@ async function renderGroupUsers(groupId) {
     content.innerHTML += `
       <div class="panel" style="margin-top:1rem;">
         <p>Inviter un utilisateur via ce lien :</p>
-        <input type="text" value="${inviteLink}" readonly style="width:100%;"/>
-        <small>Copiez ce lien et envoyez-le à l’utilisateur.</small>
+        <input type="text" value="${inviteLink}" readonly style="width:60%;"/>
+        <button id="onclick">Copier</button>
       </div>
 
       <form id="remove-member-form" style="margin-top:1rem;">
@@ -190,6 +190,16 @@ async function renderGroupUsers(groupId) {
         <button type="submit">Retirer</button>
       </form>
     `;
+
+    document.getElementById("onclick").addEventListener("click", (e) => {
+      
+      navigator.clipboard.writeText(e.target.previousElementSibling.value);
+      e.target.textContent = "Copié"
+      setTimeout(() => {
+        e.target.textContent = "Copier"
+      }, 1000)
+
+    })
 
     // Retirer un membre
     document.getElementById("remove-member-form").addEventListener("submit", async (e) => {
