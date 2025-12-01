@@ -43,6 +43,6 @@ export async function api(path, method = "GET", body = null, auth = true) {
   } finally {
     setTimeout(() => {
       hideLoader(); // ✅ cacher loader après la requête (succès ou erreur)
-    }, 2000);
+    }, 3500);
   }
 }
